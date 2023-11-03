@@ -3,57 +3,128 @@
 <html lang="en">
    <head>
       <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      <link rel="shortcut icon" type="image/ico" href="{% static 'Management/favicon.ico' %}"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="shortcut icon" type="image/ico" href="{% static 'Management/favicon.ico' %}" />
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
       <title>
         {% block title %}
         {{ page_title|default:"Payroll Management System" }}
         {% endblock title %}
-    </title>
+      </title>
       <link href="{% static 'Management/styles.css' %}" rel="stylesheet">
+      <style>
+         /* Custom CSS styles for your project outline */
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+            margin: 0;
+            padding: 0;
+         }
+
+         .container {
+            display: flex;
+         }
+
+         .sidebar.user {
+            background-color: #454848; /* Teal background color */
+            color: #598960;
+            width: 250px;
+            padding: 20px;
+         }
+
+         .main {
+            flex-grow: 1;
+            background-color: #29362b; /* White background color */
+            padding: 20px;
+         }
+
+         .avatar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: block;
+         }
+
+         h1 {
+            font-size: 24px;
+         }
+
+         p {
+            font-size: 16px;
+         }
+
+         .details {
+            margin-top: 20px;
+         }
+
+         .details i {
+            margin-right: 10px;
+         }
+
+         .buttons {
+            margin-top: 20px;
+            text-align: center;
+         }
+
+         .button {
+            background-color: #132525; /* Darker teal button color */
+            color: #385c3b;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-right: 10px;
+         }
+
+         .button:hover {
+            background-color: #062c2c; /* Teal button color on hover */
+         }
+
+         .developer-info {
+            margin-top: 20px;
+            background-color: #3f513d; /* Light gray background for developer info */
+            padding: 20px;
+            border-radius: 5px;
+         }
+      </style>
    </head>
    <body>
       <div id="root">
          <div class="container">
             <div class="sidebar user">
-               <div>
-                  <a href="{% url 'Management:Home' %}">
-                     <div class="avatar shine">
-                        <img src="https://res.cloudinary.com/garvitjoshi9/image/upload/v1594407409/Git-Hub/1_4_ebmyhb.jpg" class="profile" alt="Company Picture">
-                     </div>
-                  </a>
-                  <h1>Payroll Management System</h1>
-                  <p>A Reliable Management System made for the Elites.</p>
-               </div>
-               <div>
-                  <h3>Favorites:</h3>
-                  <div class="skills">
-                     {% for fav in favorites %}
-                     <span>{{ fav }}</span>
-                     {% empty %}
-                     <p>No Such Favorites</p>
-                     {% endfor %}
+               <a href="{% url 'Management:Home' %}">
+                  <div class="avatar shine">
+                     <img src="https://res.cloudinary.com/garvitjoshi9/image/upload/v1594407409/Git-Hub/1_4_ebmyhb.jpg" class="profile" alt="Company Picture">
                   </div>
-               </div>
-               <div class="details">
-                  <h3>About Developer:</h3>
-                  <div><i class="fab fa-github-alt"></i><a href="https://github.com/garvit-joshi" target="_blank" rel="noopener noreferrer" style="color: inherit;">@garvit-joshi</a></div>
-                  <div><i class="fas fa-building"></i><a href="https://www.lpu.in/" target="_blank" rel="noopener noreferrer" style="color: inherit;">Lovely Professional University</a></div>
-                  <div><i class="fas fa-map-marker-alt"></i><a href="https://www.google.com/search?q=Phagwara+Punjab" target="_blank" rel="noopener noreferrer" style="color: inherit;">Phagwara, Punjab</a></div>
+               </a>
+               <h1>Payroll Management System</h1>
+               <p>A Reliable Management System made for the Elites.</p>
+               <div class="buttons">
+                  <a class="button" href="#">Explore</a>
+                  <a class "button" href="#">Learn More</a>
                </div>
             </div>
             <div class="main">
                <div class="repoContainer">
                   {% block body %}
+                  <!-- Your content here -->
                   {% endblock body %}
                </div>
                <div class="repoContainer">
                   {% block sec_body %}
+                  <!-- Your secondary content here -->
                   {% endblock sec_body %}
                </div>
             </div>
          </div>
+      </div>
+      <div class="developer-info">
+         <h3>About Developer:</h3>
+         <div><i class="fab fa-github-alt"></i><a href="https://github.com/garvit-joshi" target="_blank" rel="noopener noreferrer" style="color: inherit;">@garvit-joshi</a></div>
+         <div><i class="fas fa-building"></i><a href="https://www.lpu.in/" target="_blank" rel="noopener noreferrer" style="color: inherit;">Lovely Professional University</a></div>
+         <div><i class="fas fa-map-marker-alt"></i><a href="https://www.google.com/search?q=Phagwara+Punjab" target="_blank" rel="noopener noreferrer" style="color: inherit;">Phagwara, Punjab</a></div>
       </div>
    </body>
 </html>
