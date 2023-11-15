@@ -1,4 +1,4 @@
-from .models import Employee
+from ..models import Employee
 from django.test import TestCase
 from django.urls import reverse
 
