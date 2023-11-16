@@ -11,3 +11,13 @@ class Employee(models.Model):
 
     def __str__(self):
         return f"{self.id}: {self.Name} is {self.Position} with salary of {self.Salary}. Email:{self.Email} and Password:{self.Password}"
+
+class Complaint(models.Model):
+    author = models.CharField(max_length=100)
+    email = models.EmailField()
+    complaint_type = models.CharField(max_length=100)
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+
+    def __str__(self):
+        return f"{self.id}: {self.author} - {self.complaint_type} - {self.subject}"
