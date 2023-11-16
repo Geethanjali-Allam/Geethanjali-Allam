@@ -69,10 +69,10 @@ def add_complaint(request):
         form = NewComplaintForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data["name"]
-            sender=form.cleaned_data["sender"]
-            c_type=form.cleaned_data["c_type"]
-            subject=form.cleaned_data["subject"]
-            message=form.cleaned_data["message"]
+            sender = form.cleaned_data["sender"]
+            c_type = form.cleaned_data["c_type"]
+            subject = form.cleaned_data["subject"]
+            message = form.cleaned_data["message"]
             complaint_author.append(name)
             complaint_email.append(sender)
             complaint_type.append(c_type)
@@ -80,11 +80,13 @@ def add_complaint(request):
             complaint_message.append(message)
             return HttpResponseRedirect(reverse("Management:Add_Complaint"))
         else:
+            error_message = "Invalid form submission. Please check your input."
             return render(request, "Management/add_complaint.html", {
                 "form": form,
+                "error_message": error_message,
                 "favorites": favorites
             })
-    
+
     return render(request, "Management/add_complaint.html", {
         "form": NewComplaintForm(),
         "favorites": favorites
@@ -102,7 +104,7 @@ def search(request):
         form = NewSearchForm(request.POST)
         if form.is_valid():
             query = form.cleaned_data["query"]
-            result = Employee.objects.filter(Name=query)
+            result = Employee.objects.filter(Name__icontains=query)
             return render(request, "Management/search.html", {
                 "form": form,
                 "result": result,
@@ -110,19 +112,22 @@ def search(request):
                 "favorites": favorites
             })
         else:
+            error_message = "Invalid form submission. Please check your input."
             return render(request, "Management/search.html", {
                 "result": result,
                 "form": form,
+                "error_message": error_message,
                 "method": request.method,
                 "favorites": favorites
             })
-    
+
     return render(request, "Management/search.html", {
         "result": result,
         "form": NewSearchForm(),
         "method": request.method,
         "favorites": favorites
     })
+
 
 def sign_up(request):
     if request.method == "POST":
