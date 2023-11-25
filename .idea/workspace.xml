@@ -7,6 +7,7 @@
     <list default="true" id="a618c746-5fbd-4cf0-a0cb-b839628d4303" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/queries.md" beforeDir="false" afterPath="$PROJECT_DIR$/queries.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +76,7 @@
       <workItem from="1700091030192" duration="21000" />
       <workItem from="1700098563570" duration="9000" />
       <workItem from="1700448371400" duration="59000" />
-      <workItem from="1700927477847" duration="1046000" />
+      <workItem from="1700927477847" duration="4083000" />
     </task>
     <servers />
   </component>
