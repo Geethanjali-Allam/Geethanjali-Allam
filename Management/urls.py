@@ -10,5 +10,7 @@ urlpatterns=[
     path("addcompl/", views.add_complaint, name="Add_Complaint"),
     path("compl/", views.view_complaint, name="View_Complaint"),
     path("search/", views.search, name="Search"),
-    path("signup/", views.sign_up, name="Sign_Up")
+    path("signup/", views.sign_up, name="Sign_Up"),
+    path('login/', views.login_user, name='login'),
+    path('logout/', views.logout_user, name='logout'),
 ]
