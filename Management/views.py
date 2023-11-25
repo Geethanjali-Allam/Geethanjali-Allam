@@ -1,9 +1,12 @@
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django import forms
 from django.urls import reverse
 from .models import Employee
-
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 #Adding Favorite List
 favorites = []
 
@@ -13,6 +16,10 @@ complaint_email = []
 complaint_type = []
 complaint_subject = []
 complaint_message = []
+
+class BaseUserForm(forms.Form):
+    Email = forms.EmailField(label="Your Email:", max_length=64)
+    Password = forms.CharField(label="Password", max_length=64)
 
 class NewFavForm(forms.Form):
     new_favorite = forms.CharField(label="New Favorite", required="True")
@@ -34,18 +41,20 @@ class NewSignupForm(forms.Form):
     Position = forms.CharField(label="Your Position",max_length=64)
     Salary = forms.IntegerField(label="Your Salary:")
 
+class LoginForm(BaseUserForm, AuthenticationForm):
+    pass
 
 # Create your views here.
 def index(request):
     return render(request, "Management/index.html", {
         "favorites": favorites
     })
-
+@login_required
 def view_fav(request):
     return render(request, "Management/favourite.html", {
         "favorites": favorites
     })
-
+@login_required
 def add_fav(request):
     if request.method == "POST":
         form = NewFavForm(request.POST)
@@ -91,13 +100,13 @@ def add_complaint(request):
         "form": NewComplaintForm(),
         "favorites": favorites
     })
-
+@login_required
 def view_complaint(request):
     return render(request, "Management/complaint.html", {
         "Complaint": zip(complaint_author, complaint_email, complaint_type, complaint_subject, complaint_message),
         "favorites": favorites
     })
-
+@login_required
 def search(request):
     result = "NONE"
     if request.method == "POST":
@@ -128,7 +137,6 @@ def search(request):
         "favorites": favorites
     })
 
-
 def sign_up(request):
     if request.method == "POST":
         form = NewSignupForm(request.POST)
@@ -151,3 +159,28 @@ def sign_up(request):
         "form": NewSignupForm(),
         "favorites": favorites
     })
+
+def login_user(request):
+    if request.method == "POST":
+        form = LoginForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['Email']
+            password = form.cleaned_data['Password']
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(reverse("Management:index"))
+            else:
+                error_message = "Invalid login credentials. Please try again."
+                return render(request, "Management/index.html", {"form": form, "error_message": error_message})
+        else:
+            error_message = "Invalid form submission. Please check your input."
+            return render(request, "Management/index.html", {"form": form, "error_message": error_message})
+
+    form = LoginForm()  # Create a new instance of the form for GET requests
+    return render(request, "Management/login.html", {"form": form})
+
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("Management:login"))
