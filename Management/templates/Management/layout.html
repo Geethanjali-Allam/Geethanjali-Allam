@@ -1,73 +1,68 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="shortcut icon" type="image/ico" href="{% static 'Management/favicon.ico' %}" />
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-      <title>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/ico" href="{% static 'Management/favicon.ico' %}" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <title>
         {% block title %}
         {{ page_title|default:"Payroll Management System" }}
         {% endblock title %}
-      </title>
-      <link href="{% static 'Management/styles.css' %}" rel="stylesheet">
-      <style>
-         /* Custom CSS styles for your project outline */
-         body {
+    </title>
+    <link href="{% static 'Management/styles.css' %}" rel="stylesheet">
+    <style>
+        /* Custom CSS styles for your project outline */
+        body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0; /* Light gray background */
             margin: 0;
             padding: 0;
-         }
+        }
 
-         .container {
+        .container {
             display: flex;
-         }
+        }
 
-         .sidebar.user {
+        .sidebar.user {
             background-color: #454848; /* Teal background color */
             color: #598960;
             width: 250px;
             padding: 20px;
-         }
+        }
 
-         .main {
+        .main {
             flex-grow: 1;
             background-color: #29362b; /* White background color */
             padding: 20px;
-         }
+        }
 
-         .avatar img {
+        .avatar img {
             width: 100px;
             height: 100px;
             border-radius: 50%;
             margin: 20px auto;
             display: block;
-         }
+        }
 
-         h1 {
+        h1 {
             font-size: 24px;
-         }
+            color: #ffffff; /* White text color */
+        }
 
-         p {
+        p {
             font-size: 16px;
-         }
+            color: #ffffff; /* White text color */
+        }
 
-         .details {
-            margin-top: 20px;
-         }
-
-         .details i {
-            margin-right: 10px;
-         }
-
-         .buttons {
+        .buttons {
             margin-top: 20px;
             text-align: center;
-         }
+        }
 
-         .button {
+        .button {
             background-color: #132525; /* Darker teal button color */
             color: #385c3b;
             padding: 10px 20px;
@@ -76,55 +71,63 @@
             font-size: 16px;
             border-radius: 5px;
             margin-right: 10px;
-         }
+        }
 
-         .button:hover {
+        .button:hover {
             background-color: #062c2c; /* Teal button color on hover */
-         }
+        }
 
-         .developer-info {
+        .developer-info {
             margin-top: 20px;
             background-color: #3f513d; /* Light gray background for developer info */
             padding: 20px;
             border-radius: 5px;
-         }
-      </style>
-   </head>
-   <body>
-      <div id="root">
-         <div class="container">
+            color: #ffffff; /* White text color */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <div class="container">
             <div class="sidebar user">
-               <a href="{% url 'Management:Home' %}">
-                  <div class="avatar shine">
-                     <img src="https://res.cloudinary.com/garvitjoshi9/image/upload/v1594407409/Git-Hub/1_4_ebmyhb.jpg" class="profile" alt="Company Picture">
-                  </div>
-               </a>
-               <h1>Payroll Management System</h1>
-               <p>A Reliable Management System made for the Elites.</p>
-               <div class="buttons">
-                  <a class="button" href="#">Explore</a>
-                  <a class "button" href="#">Learn More</a>
-               </div>
+                <a href="{% url 'Management:Home' %}">
+                    <div class="avatar shine">
+                        <img src="https://res.cloudinary.com/garvitjoshi9/image/upload/v1594407409/Git-Hub/1_4_ebmyhb.jpg"
+                            class="profile" alt="Company Picture">
+                    </div>
+                </a>
+                <h1>Payroll Management System</h1>
+                <p>A Reliable Management System made for the Elites.</p>
+                <div class="buttons">
+                    <a class="button" href="#">Explore</a>
+                    <a class="button" href="#">Learn More</a>
+                </div>
             </div>
             <div class="main">
-               <div class="repoContainer">
-                  {% block body %}
-                  <!-- Your content here -->
-                  {% endblock body %}
-               </div>
-               <div class="repoContainer">
-                  {% block sec_body %}
-                  <!-- Your secondary content here -->
-                  {% endblock sec_body %}
-               </div>
+                <div class="repoContainer">
+                    {% block body %}
+                    <!-- Your content here -->
+                    {% endblock body %}
+                </div>
+                <div class="repoContainer">
+                    {% block sec_body %}
+                    <!-- Your secondary content here -->
+                    {% endblock sec_body %}
+                </div>
             </div>
-         </div>
-      </div>
-      <div class="developer-info">
-         <h3>About Developer:</h3>
-         <div><i class="fab fa-github-alt"></i><a href="https://github.com/garvit-joshi" target="_blank" rel="noopener noreferrer" style="color: inherit;">@garvit-joshi</a></div>
-         <div><i class="fas fa-building"></i><a href="https://www.lpu.in/" target="_blank" rel="noopener noreferrer" style="color: inherit;">Lovely Professional University</a></div>
-         <div><i class="fas fa-map-marker-alt"></i><a href="https://www.google.com/search?q=Phagwara+Punjab" target="_blank" rel="noopener noreferrer" style="color: inherit;">Phagwara, Punjab</a></div>
-      </div>
-   </body>
+        </div>
+    </div>
+    <div class="developer-info">
+        <h3>About Developer:</h3>
+        <div><i class="fab fa-github-alt"></i><a href="https://github.com/Geethanjali-Allam" target="_blank"
+                rel="noopener noreferrer" style="color: inherit;">@GEETHANJALI ALLAM</a></div>
+        <div><i class="fas fa-building"></i><a href="https://www.google.com/search?gs_ssp=eJzj4tTP1TcwyigwNzBg9JIuzcssSy0qziypVMhPU8hLLVfISMwtKM7ILEoFAAJBDbg&q=university+of+new+hampshire&rlz=1C1CHBF_enUS1039US1039&oq=university+&gs_lcrp=EgZjaHJvbWUqBwgBEC4YgAQyBggAEEUYOTIHCAEQLhiABDIHCAIQLhiABDIHCAMQLhiABDIGCAQQRRg9MgYIBRBFGEEyBggGEEUYQTIGCAcQRRg80gEJMTczNzNqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8" target="_blank" rel="noopener noreferrer"
+                style="color: inherit;">UNIVERSITY OF NEW HAMPSHIRE</a></div>
+        <div><i class="fas fa-map-marker-alt"></i><a href="https://www.google.com/search?q=manchester+nh&sca_esv=585281359&rlz=1C1CHBF_enUS1039US1039&sxsrf=AM9HkKnhxyA8PeCMUFb2Tu6J1QcTwkBoUQ%3A1700933664049&ei=IDBiZfO6AtGi5NoPhI-bkAE&gs_ssp=eJzj4tDP1TeoyMgyMmD04s1NzEvOSC0uSS1SyMsAAGOGCDI&oq=manchester+&gs_lp=Egxnd3Mtd2l6LXNlcnAiC21hbmNoZXN0ZXIgKgIIATIKEAAYgAQYigUYQzINEC4YsQMYgAQYigUYQzIKEC4YgAQYigUYQzIKEAAYgAQYigUYQzIKEC4YgAQYigUYQzIKEAAYgAQYigUYQzIKEAAYgAQYigUYQzIKEC4YgAQYigUYQzINEAAYgAQYigUYsQMYQzIQEC4YgAQYigUYxwEYrwEYQzIcEC4YsQMYgAQYigUYQxiXBRjcBBjeBBjgBNgBAkjLOFCVC1iDInABeAGQAQCYAfADoAHjFKoBCTAuNS40LjEuMbgBAcgBAPgBAagCEMICBxAuGOoCGCfCAgcQIxjqAhgnwgINEC4YxwEY0QMY6gIYJ8ICDRAuGMcBGK8BGOoCGCfCAhYQLhiABBiKBRjIAxjqAhi0AhhD2AEBwgIKECMYgAQYigUYJ8ICDRAuGIAEGIoFGLEDGEPiAwQYACBBiAYBugYGCAEQARgIugYGCAIQARgU&sclient=gws-wiz-serp"
+                target="_blank" rel="noopener noreferrer" style="color: inherit;">Manchester NH</a></div>
+    </div>
+</body>
+
 </html>
+
