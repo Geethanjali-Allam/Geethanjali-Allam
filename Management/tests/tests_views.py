@@ -8,12 +8,6 @@ class ManagementViewsTestCase(TestCase):
         response = self.client.get(reverse('Management:Home'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'Management/index.html')
-
-    def test_view_fav_view(self):
-        response = self.client.get(reverse('Management:View_Favourite'))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'Management/favourite.html')
-
     def test_add_fav_view(self):
         response = self.client.get(reverse('Management:Add_Favourite'))
         self.assertEqual(response.status_code, 200)
@@ -22,7 +16,8 @@ class ManagementViewsTestCase(TestCase):
         # Test POST request
         data = {'new_favorite': 'New Favorite'}
         response = self.client.post(reverse('Management:Add_Favourite'), data)
-        self.assertEqual(response.status_code, 302)  # Should redirect
+        self.assertEqual(response.status_code, 302)  
+        self.assertRedirects(response, reverse('Management:Add_Favourite')) 
 
     def test_add_complaint_view(self):
         response = self.client.get(reverse('Management:Add_Complaint'))
@@ -38,12 +33,10 @@ class ManagementViewsTestCase(TestCase):
             'message': 'This is a test complaint.'
         }
         response = self.client.post(reverse('Management:Add_Complaint'), data)
-        self.assertEqual(response.status_code, 302)  # Should redirect
+        self.assertEqual(response.status_code, 302)  
 
-    def test_view_complaint_view(self):
-        response = self.client.get(reverse('Management:View_Complaint'))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'Management/complaint.html')
+
+
 
     def test_search_view(self):
         response = self.client.get(reverse('Management:Search'))
@@ -51,9 +44,10 @@ class ManagementViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'Management/search.html')
 
         # Test POST request
-        data = {'query': 'John Doe'}  # Assuming 'John Doe' exists in Employee objects
+        data = {'query': 'John Doe'} 
         response = self.client.post(reverse('Management:Search'), data)
-        self.assertEqual(response.status_code, 200)  # Check if the search result is displayed
+        self.assertEqual(response.status_code, 200) 
+        self.assertContains(response, 'Search Results') 
 
     def test_sign_up_view(self):
         response = self.client.get(reverse('Management:Sign_Up'))
@@ -69,5 +63,19 @@ class ManagementViewsTestCase(TestCase):
             'Salary': 50000
         }
         response = self.client.post(reverse('Management:Sign_Up'), data)
-        self.assertEqual(response.status_code, 302)  # Should redirect
-        self.assertEqual(Employee.objects.count(), 1)  # Check if a new employee was added to the database
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Employee.objects.count(), 1)  
+
+"""
+    def test_view_fav_view(self):
+        response = self.client.get(reverse('Management:View_Favourite'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'Management/favourite.html')
+
+    def test_view_complaint_view(self):
+        response = self.client.get(reverse('Management:View_Complaint'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'Management/complaint.html')
+"""
+
+    

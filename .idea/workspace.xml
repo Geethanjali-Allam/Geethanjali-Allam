@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a618c746-5fbd-4cf0-a0cb-b839628d4303" name="Changes" comment="" />
+    <list default="true" id="a618c746-5fbd-4cf0-a0cb-b839628d4303" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Payroll_Management_System/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Payroll_Management_System/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +29,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/geeth/OneDrive/Desktop/capstone/geethanjali-allam",
+    "last_opened_file_path": "C:/Users/geeth/OneDrive/Desktop/801/h3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -73,6 +76,7 @@
       <workItem from="1700098563570" duration="9000" />
       <workItem from="1700448371400" duration="59000" />
       <workItem from="1700927477847" duration="4493000" />
+      <workItem from="1700951591574" duration="21000" />
     </task>
     <servers />
   </component>
