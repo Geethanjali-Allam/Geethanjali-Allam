@@ -12,4 +12,8 @@
         <input type="password" name="password" required>
         <button type="submit">Login</button>
     </form>
+
+    {# Add the following line for redirection after successful login #}
+    <p>If you're an admin, you can also <a href="{% url 'admin:index' %}">go to the admin page</a>.</p>
+
 {% endblock body %}

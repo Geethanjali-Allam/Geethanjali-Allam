@@ -1,12 +1,15 @@
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django import forms
 from django.urls import reverse
-from .models import Employee
+from .models import Employee, Complaint
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, get_object_or_404, redirect
+
 #Adding Favorite List
 favorites = []
 
@@ -43,7 +46,10 @@ class NewSignupForm(forms.Form):
 
 class LoginForm(BaseUserForm, AuthenticationForm):
     pass
-
+class UpdateComplaintForm(forms.ModelForm):
+    class Meta:
+        model = Complaint
+        fields = ['author', 'email', 'complaint_type', 'subject', 'message']
 # Create your views here.
 def index(request):
     return render(request, "Management/index.html", {
@@ -77,17 +83,16 @@ def add_complaint(request):
     if request.method == "POST":
         form = NewComplaintForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data["name"]
-            sender = form.cleaned_data["sender"]
-            c_type = form.cleaned_data["c_type"]
-            subject = form.cleaned_data["subject"]
-            message = form.cleaned_data["message"]
-            complaint_author.append(name)
-            complaint_email.append(sender)
-            complaint_type.append(c_type)
-            complaint_subject.append(subject)
-            complaint_message.append(message)
-            return HttpResponseRedirect(reverse("Management:Add_Complaint"))
+            # Save the complaint to the database
+            complaint = Complaint(
+                author=form.cleaned_data["name"],
+                email=form.cleaned_data["sender"],
+                complaint_type=form.cleaned_data["c_type"],
+                subject=form.cleaned_data["subject"],
+                message=form.cleaned_data["message"]
+            )
+            complaint.save()
+            return HttpResponseRedirect(reverse("Management:View_Complaint"))
         else:
             error_message = "Invalid form submission. Please check your input."
             return render(request, "Management/add_complaint.html", {
@@ -100,12 +105,43 @@ def add_complaint(request):
         "form": NewComplaintForm(),
         "favorites": favorites
     })
+
 @login_required
 def view_complaint(request):
+    complaints = Complaint.objects.all()
     return render(request, "Management/complaint.html", {
-        "Complaint": zip(complaint_author, complaint_email, complaint_type, complaint_subject, complaint_message),
+        "Complaint": complaints,
         "favorites": favorites
     })
+@login_required
+def update_complaint(request, complaint_id):
+    complaint = get_object_or_404(Complaint, id=complaint_id)
+    if request.method == "POST":
+        form = UpdateComplaintForm(request.POST, instance=complaint)
+        if form.is_valid():
+            form.save()
+            return redirect("Management:View_Complaint")
+    else:
+        form = UpdateComplaintForm(instance=complaint)
+
+    return render(request, "Management/update_complaint.html", {
+        "form": form,
+        "complaint_id": complaint_id,
+        "favorites": favorites
+    })
+
+@login_required
+def delete_complaint(request, complaint_id):
+    complaint = get_object_or_404(Complaint, id=complaint_id)
+    if request.method == "POST":
+        complaint.delete()
+        return redirect("Management:View_Complaint")
+
+    return render(request, "Management/delete_complaint.html", {
+        "complaint": complaint,
+        "favorites": favorites
+    })
+
 @login_required
 def search(request):
     result = "NONE"
@@ -164,19 +200,19 @@ def login_user(request):
     if request.method == "POST":
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
-            username = form.cleaned_data['Email']
+            email = form.cleaned_data['Email']
             password = form.cleaned_data['Password']
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(request, username=email, password=password)
 
             if user is not None:
                 login(request, user)
                 return HttpResponseRedirect(reverse("Management:index"))
             else:
                 error_message = "Invalid login credentials. Please try again."
-                return render(request, "Management/index.html", {"form": form, "error_message": error_message})
+                return render(request, "Management/login.html", {"form": form, "error_message": error_message})
         else:
             error_message = "Invalid form submission. Please check your input."
-            return render(request, "Management/index.html", {"form": form, "error_message": error_message})
+            return render(request, "Management/login.html", {"form": form, "error_message": error_message})
 
     form = LoginForm()  # Create a new instance of the form for GET requests
     return render(request, "Management/login.html", {"form": form})
