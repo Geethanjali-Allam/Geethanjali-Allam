@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a618c746-5fbd-4cf0-a0cb-b839628d4303" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Payroll_Management_System/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Payroll_Management_System/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Management/templates/Management/complaint.html" beforeDir="false" afterPath="$PROJECT_DIR$/Management/templates/Management/complaint.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Management/templates/Management/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/Management/templates/Management/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Management/templates/Management/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Management/templates/Management/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Management/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Management/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +33,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/geeth/OneDrive/Desktop/801/h3",
+    "last_opened_file_path": "C:/Users/geeth/OneDrive/Desktop/capstone/geethanjali-allam",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -45,8 +49,10 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="Payroll_Management_System.settings" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\geeth\.venv\Scripts\python.exe" />
+      <option name="SDK_NAME" value="Python 3.9 (.venv)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -77,6 +83,7 @@
       <workItem from="1700448371400" duration="59000" />
       <workItem from="1700927477847" duration="4493000" />
       <workItem from="1700951591574" duration="21000" />
+      <workItem from="1710889529065" duration="889000" />
     </task>
     <servers />
   </component>

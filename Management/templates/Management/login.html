@@ -1,19 +1,19 @@
-{% extends "Management/layout.html" %}
-
-{% block title %} Login {% endblock title %}
-
-{% block body %}
-
-    <form method="post" action="{% url 'Management:login' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+    <form method="post">
         {% csrf_token %}
-        <label for="username">Username:</label>
-        <input type="text" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required>
+        {{ form.as_p }}
         <button type="submit">Login</button>
     </form>
-
-    {# Add the following line for redirection after successful login #}
-    <p>If you're an admin, you can also <a href="{% url 'admin:index' %}">go to the admin page</a>.</p>
-
-{% endblock body %}
+</body>
+</html>

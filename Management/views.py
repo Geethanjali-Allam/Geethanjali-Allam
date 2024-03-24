@@ -44,8 +44,9 @@ class NewSignupForm(forms.Form):
     Position = forms.CharField(label="Your Position",max_length=64)
     Salary = forms.IntegerField(label="Your Salary:")
 
-class LoginForm(BaseUserForm, AuthenticationForm):
-    pass
+class LoginForm(AuthenticationForm):
+    Email = forms.EmailField(label="Your Email:", max_length=64)
+    Password = forms.CharField(label="Password", max_length=64)
 class UpdateComplaintForm(forms.ModelForm):
     class Meta:
         model = Complaint
@@ -198,15 +199,15 @@ def sign_up(request):
 
 def login_user(request):
     if request.method == "POST":
-        form = LoginForm(request, data=request.POST)
+        form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
-            email = form.cleaned_data['Email']
-            password = form.cleaned_data['Password']
-            user = authenticate(request, username=email, password=password)
+            username = form.cleaned_data.get('username')  # Assuming you're using username to authenticate
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
 
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse("Management:index"))
+                return HttpResponseRedirect(reverse("Management:Home")) 
             else:
                 error_message = "Invalid login credentials. Please try again."
                 return render(request, "Management/login.html", {"form": form, "error_message": error_message})
@@ -214,7 +215,7 @@ def login_user(request):
             error_message = "Invalid form submission. Please check your input."
             return render(request, "Management/login.html", {"form": form, "error_message": error_message})
 
-    form = LoginForm()  # Create a new instance of the form for GET requests
+    form = AuthenticationForm()  # Create a new instance of the form for GET requests
     return render(request, "Management/login.html", {"form": form})
 
 def logout_user(request):

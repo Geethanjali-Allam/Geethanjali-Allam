@@ -5,16 +5,16 @@
 {% block title %} Complaints {% endblock title %}
 
 {% block body %}
-  <h1>All Complaints</h1>
-  <div class="repoContainer" style="overflow-y: hidden;">
-    <table id="code" style="position: relative; margin-right: 30px; padding: 15px; border-spacing:30px;">
+  <h4>All Complaints</h4>
+  <div class="repoContainer" style="overflow-y: hidden;width: 100%;">
+    <table id="code" style="width: 100%; border-collapse: collapse;">
       <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Complaint Type</th>
-        <th>Complaint Subject</th>
-        <th>Complaint Message</th>
-        <th>Actions</th>
+        <th style="width: 15%;">Name</th>
+        <th style="width: 15%;">Email</th>
+        <th style="width: 15%;">Complaint Type</th>
+        <th style="width: 20%;">Complaint Subject</th>
+        <th style="width: 30%;">Complaint Message</th>
+        <th style="width: 5%;">Actions</th>
       </tr>
       {% for comp in Complaint %}
     <tr>

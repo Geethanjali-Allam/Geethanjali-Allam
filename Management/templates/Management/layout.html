@@ -58,12 +58,15 @@
         }
 
         .buttons {
+            background-color: #c9c5c5; /* Darker teal button color */
+            color: #385c3b;
             margin-top: 20px;
             text-align: center;
+            padding: 10px 20px;
         }
 
         .button {
-            background-color: #132525; /* Darker teal button color */
+            background-color: #0c0c0c; /* Darker teal button color */
             color: #385c3b;
             padding: 10px 20px;
             border: none;
@@ -99,23 +102,19 @@
                 </a>
                 <h1>Payroll Management System</h1>
                 <p>A Reliable Management System made for the Elites.</p>
-                <div class="buttons">
-                    <a class="button" href="#">Explore</a>
-                    <a class="button" href="#">Learn More</a>
-                    <a href="{% url 'Management:Sign_Up' %}">Siginin</a>
-                    <a href="{% url 'Management:login' %}">Login</a>
-                    <a href="{% url 'Management:logout' %}">Logout</a>
+                <div class="button">
+                   <span><a href="{% url 'Management:Sign_Up' %}">Siginin</a><br></span> 
+                   <span> <a href="{% url 'Management:login' %}">Login</a><br></span> 
+                   <span><a href="{% url 'Management:logout' %}">Logout</a></span>
                 </div>
             </div>
             <div class="main">
                 <div class="repoContainer">
                     {% block body %}
-                    <!-- Your content here -->
                     {% endblock body %}
                 </div>
                 <div class="repoContainer">
                     {% block sec_body %}
-                    <!-- Your secondary content here -->
                     {% endblock sec_body %}
                 </div>
             </div>
