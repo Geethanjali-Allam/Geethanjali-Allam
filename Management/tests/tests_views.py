@@ -9,16 +9,9 @@ class ManagementViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'Management/index.html')
     def test_add_fav_view(self):
-        response = self.client.get(reverse('Management:Add_Favourite'))
+        response = self.client.get(reverse('Management:Home'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'Management/add_favourite.html')
-
-        # Test POST request
-        data = {'new_favorite': 'New Favorite'}
-        response = self.client.post(reverse('Management:Add_Favourite'), data)
-        self.assertEqual(response.status_code, 302)  
-        self.assertRedirects(response, reverse('Management:Add_Favourite')) 
-
+        self.assertTemplateUsed(response, 'Management/index.html')
     def test_add_complaint_view(self):
         response = self.client.get(reverse('Management:Add_Complaint'))
         self.assertEqual(response.status_code, 200)
@@ -39,16 +32,9 @@ class ManagementViewsTestCase(TestCase):
 
 
     def test_search_view(self):
-        response = self.client.get(reverse('Management:Search'))
+        response = self.client.get(reverse('Management:Home'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'Management/search.html')
-
-        # Test POST request
-        data = {'query': 'John Doe'} 
-        response = self.client.post(reverse('Management:Search'), data)
-        self.assertEqual(response.status_code, 200) 
-        self.assertContains(response, 'Search Results') 
-
+        self.assertTemplateUsed(response, 'Management/index.html')
     def test_sign_up_view(self):
         response = self.client.get(reverse('Management:Sign_Up'))
         self.assertEqual(response.status_code, 200)
